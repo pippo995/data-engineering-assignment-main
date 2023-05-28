@@ -1,0 +1,23 @@
+version: '3'
+services:
+  etl:
+    build: .
+    depends_on:
+      - mongo
+    networks:
+      - bridge-network
+  mongodb:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb_container_data:/data/db
+    networks:
+      - bridge-network
+
+volumes:
+  mongodb_container_data:
+
+networks:
+  bridge-network:
+    driver: bridge

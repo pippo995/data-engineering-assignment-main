@@ -39,7 +39,7 @@ def transform_data(df):
 # Function to load the data into MongoDB
 def load_data(df):
   
-  client = pymongo.MongoClient('mongodb://localhost:27017/')
+  client = pymongo.MongoClient('mongodb://mongodb:27017/')
   db = client['employees']
   collection = db['employees']
   data = df.to_dict('records')
@@ -52,6 +52,5 @@ def load_data(df):
 
 if __name__ == '__main__':
   df = read_csv('employee_details.csv')
-  print(df)
   df = transform_data(df)
   load_data(df)
